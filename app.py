@@ -7,6 +7,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 app = Flask(__name__)
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 loaded_model = pickle.load(open('smodel.pkl', 'rb'))
 def requestResults(result):
     if result == 0:
@@ -38,5 +40,3 @@ def predict():
 
 if __name__ == '__main__':
     app.run(debug=True,use_reloader=False, port=9800)
-app.logger.addHandler(logging.StreamHandler(sys.stdout))
-app.logger.setLevel(logging.ERROR)

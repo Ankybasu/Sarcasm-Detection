@@ -7,8 +7,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 app = Flask(__name__)
-app.logger.addHandler(logging.StreamHandler(sys.stdout))
-app.logger.setLevel(logging.ERROR)
+
 loaded_model = pickle.load(open('smodel.pkl', 'rb'))
 def requestResults(result):
     if result == 0:

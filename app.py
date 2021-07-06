@@ -8,11 +8,6 @@ from sklearn.model_selection import train_test_split
 
 app = Flask(__name__)
 loaded_model = pickle.load(open('smodel.pkl', 'rb'))
-tfvect = TfidfVectorizer(stop_words='english', ngram_range=(1, 2), lowercase=True, max_features=150000)
-dataframe = pd.read_csv("train-balanced-sarcasm.csv")
-x = tfvect.fit_transform(dataframe['comment'].apply(lambda x: np.str_(x)))
-y = dataframe['label']
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
 
 def requestResults(result):
     if result == 0:
@@ -21,6 +16,11 @@ def requestResults(result):
         return "Sarcastic"
     
 def sardet(text): 
+    tfvect = TfidfVectorizer(stop_words='english', ngram_range=(1, 2), lowercase=True, max_features=150000)
+    dataframe = pd.read_csv("train-balanced-sarcasm.csv")
+    x = tfvect.fit_transform(dataframe['comment'].apply(lambda x: np.str_(x)))
+    y = dataframe['label']
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
     input_data = [text]
     vectorized_input_data =  tfvect.transform(input_data)
     prediction = loaded_model.predict(vectorized_input_data)

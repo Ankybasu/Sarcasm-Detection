@@ -5,6 +5,7 @@ import pickle
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from gevent.pywsgi import WSGIServer
 
 app = Flask(__name__)
 
@@ -38,4 +39,5 @@ def predict():
     return render_template('index.html', prediction_text=result)
 
 if __name__ == '__main__':
-    app.run(debug=True,threaded=True)
+    http_server = WSGIServer(('', 5000), app)
+    http_server.serve_forever()

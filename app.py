@@ -29,7 +29,7 @@ def sardet(text):
 def home():
     return render_template('index.html')
 
-@app.route('/predict', methods=['POST','GET'])
+@app.route('/predict', methods=['POST'])
 def predict():
     message = request.form['message']
     pred = sardet(message)

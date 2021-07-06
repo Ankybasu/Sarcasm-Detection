@@ -19,6 +19,7 @@ def requestResults(result):
         return "Not-Sarcastic"
     else:
         return "Sarcastic"
+    
 def sardet(text): 
     input_data = [text]
     vectorized_input_data =  tfvect.transform(input_data)

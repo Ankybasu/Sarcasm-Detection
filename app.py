@@ -33,9 +33,7 @@ def home():
 def predict():
     message = request.form['message']
     pred = sardet(message)
-    print(pred)
     result=requestResults(pred)
-    print(str(result))
     return render_template('index.html', prediction_text=result)
 
 if __name__ == '__main__':

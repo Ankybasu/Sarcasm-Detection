@@ -3,8 +3,8 @@ import pickle
 
 
 app = Flask(__name__)
-loaded_model = pickle.load(open('lrmodel.pkl', 'rb'))
-text_transformer=pickle.load(open('transformer.pkl', 'rb'))
+loaded_model = pickle.load(open('smodel.pkl', 'rb'))
+text_transformer=pickle.load(open('tt2.pkl', 'rb'))
 
 def requestResults(result):
     if result == 0:
